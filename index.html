@@ -64,6 +64,38 @@
       background: linear-gradient(145deg,#1d1d1d,#090909);
       padding: 24px; border: 1px solid var(--line); position: relative; overflow: hidden;
     }
+	
+	/* --- 2x2 centered grid for Capabilities --- */
+	.grid-2x2 {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(280px, 1fr));
+	gap: 28px;
+	max-width: 760px;
+	margin: 0 auto;
+	justify-content: center;
+	}
+	
+	/* Make sure cards take full width of their grid cell */
+	.grid-2x2 .card {
+	width: 100%;
+	max-width: none;           /* override the previous 320px limit */
+	}
+	
+	/* Optional: nicer hover on the 2x2 grid */
+	.grid-2x2 .card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 0 35px rgba(45, 156, 219, 0.2);
+	}
+	
+	/* Responsive: stack on mobile */
+	@media (max-width: 640px) {
+	.grid-2x2 {
+		grid-template-columns: 1fr;
+		gap: 24px;
+		max-width: 100%;
+	}
+	}	
+	
     .card::before{ content:""; position:absolute; top:0; left:0; width:100%; height:2px; background: var(--accent); opacity:0.3; }
     .card h3 { margin-top: 0; color: var(--accent); font-size:16px; letter-spacing:1px; }
     .card p{ color:var(--muted); font-size:14px; }
@@ -88,7 +120,110 @@
 	  text-decoration: inherit; /* no underline */
 	}
 	
-  </style>
+  
+/* --- PREMIUM CENTERED LAYOUT UPGRADE --- */
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.hero {
+  padding: 140px 20px 100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero p {
+  margin: 0 auto 40px;
+}
+
+section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.grid {
+  justify-items: center;
+}
+
+.card {
+  max-width: 320px;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(45,156,219,0.15);
+}
+
+h2 {
+  text-align: center;
+}
+
+/* Header centering improvement */
+header {
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+/* Mobile polish */
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 20px 60px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 60px 20px;
+  }
+
+  nav a {
+    margin-left: 12px;
+    font-size: 12px;
+  }
+}
+
+
+/* --- SCROLL ANIMATIONS --- */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fix contact alignment */
+.contact-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-box p {
+  justify-content: center !important;
+  text-align: center;
+}
+
+</style>
 </head>
 <body>
 
@@ -105,31 +240,33 @@
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero"><div class="container">
   <h1>From Lab to Field</h1>
-  <p>Advanced electronics, R&D and applied engineering systems designed for real-world deployment and high-reliability environments.</p>
+  <p>Advanced electronics, R&D, and applied engineering systems designed for real-world deployment and high-reliability environments.</p>
   <a href="#contact" class="btn">Establish Contact</a>
-</section>
+</div></section>
 
-<section id="services">
+<section class="fade-up" id="services">
   <h2>Capabilities</h2>
-  <div class="grid">
-    <div class="card"><h3>R&D / Prototyping</h3><p>Rapid concept development into functional, testable hardware systems.</p></div>
-    <div class="card"><h3>HW/SW/CAD Engineering</h3><p>Embedded systems, PCB design, and validation under real conditions.</p></div>
-    <div class="card"><h3>IP Development</h3><p>Creation and structuring of proprietary technology and licensing assets.</p></div>
-    <div class="card"><h3>Technical Consulting</h3><p>System-level advisory, integration, and performance optimization.</p></div>
+  <div class="container">
+    <div class="grid grid-2x2">
+      <div class="card"><h3>R&D / Prototyping</h3><p>Rapid concept development into functional, testable hardware systems.</p></div>
+      <div class="card"><h3>HW/SW/CAD Engineering</h3><p>Embedded systems, PCB design, and validation under real conditions.</p></div>
+      <div class="card"><h3>IP Development</h3><p>Creation and structuring of proprietary technology and licensing assets.</p></div>
+      <div class="card"><h3>Technical Consulting</h3><p>System-level advisory, integration, and performance optimization.</p></div>
+    </div>
   </div>
 </section>
 
-<section id="about">
+<section class="fade-up" id="about">
   <h2>About</h2>
-  <div class="about-box">
+  <div class="container"> 
     <p>Jacks Labs is an independent engineering unit led by Jaka Bevk.</p>
 	<p>The lab focuses on development of advanced technical systems, bridging early-stage research and field deployment. Work spans electronics, applied R&D, and integration of high-performance technologies for demanding environments.</p>
   </div>
-</section>
+</div></section>
 
-<section id="contact">
+<section class="fade-up" id="contact">
   <h2>Contact</h2>
   <div class="contact-box">
 	<p style="display:flex; align-items:center; gap:12px; margin:8px 0;">
@@ -152,7 +289,7 @@
 	
     <p>Business open for collaboration and consulting</p>
   </div>
-</section>
+</div></section>
 
 <footer>
   © 2026 JACKS LABS — ENGINEERED SYSTEMS
@@ -335,6 +472,21 @@ function init() {
 }
 
 window.onload = init;
+</script>
+
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  observer.observe(el);
+});
 </script>
 
 </body>
