@@ -1,2 +1,320 @@
 # jacks-labs.github.io
 Jacks Labs website
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacks Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACFUlEQVRYhe2WPYsTURSGn5mdZCAh6sZNF9RiiVtZ+Acsl+D+hO1SCxYW/oYUNtbbBsFgI4irpZ1go2QIYiUGJFkiRiLMZD7kXO/AJIyzsyuZNHnhMnfuPXPOO+frXrbYYtMwxuPxeRSuA/eBx8BBvLhrG08G0+DR0avZjV3b6AAPgVriu2Ogl6X4Y2cf6wIOMPRIvgt2gKvAlRX5Sh6lpmmaGIaRQ/SfCIAZ8GtF4HcuAr7vE4bh/5K4NMz5fI6QEE9sApbnecqsZVlUKhVFRtaK8ojKATEongiCgCiKCvWD8rtt20g59no9BoOB8kShBMTgdDql3+8zHA6pVquFEbBarZaatNttNWJIDhRRHamp7ziOMi6JuW6kEpBQSEKWy+XNEBiNRqoadG+Qsgj1sxgCtdrfM0WXpMjYuucnEayNQEpXrBZKoNvtJl9vAnf1iRfDBX6sjcBkMqFUKsUlKMbvAdf0tvz5N+D7Obq9PAQsx3EO0jbq9fr+YrG4rS8jtxJbkhhvgQ9Zis9OT57vHXYeZIiEd06+mFaz2fwkRFY2Xdd1S57nxR6KEtUwBF4CgywCe4dySeJphojoMyzf99O6jS2JKL1Ah8EHvgLvgDfA+yzjOaEUW9Hy8Rf33Ui3YYn3Tx3zz8Ap8FqvxdjR17HaJUgsuX7JuE62pPEXjUbjWSzsz87iaSw3uyAJPyX0W2xRMIA/CLaxPHa6zKIAAAAASUVORK5CYII=">
+
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#0E0E0E;
+      --line:#1A1A1A;
+      --accent:#2D9CDB;
+      --text:#EAEAEA;
+      --muted:#8A8F98;
+    }
+
+    *{box-sizing:border-box}
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #0a0a0a, #050505);
+      color: var(--text);
+    }
+
+    header, section, footer { position: relative; z-index: 2; }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,5,5,0.8);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top:0;
+      z-index: 10;
+    }
+
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 20px; letter-spacing: 2px; }
+    .logo span { color: var(--accent); }
+    nav a { margin-left: 24px; text-decoration: none; color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+    nav a:hover { color: var(--accent); }
+
+    .hero { padding: 140px 40px 100px; max-width: 1100px; position: relative; }
+    .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 56px; margin: 0 0 20px; letter-spacing: 2px; }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 600px; margin-bottom: 40px; }
+    .btn {
+      padding: 14px 28px; background: transparent; color: var(--accent);
+      text-decoration: none; border: 1px solid var(--accent); font-size: 14px;
+      letter-spacing: 1px; transition: 0.3s;
+    }
+    .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px rgba(45,156,219,0.4); }
+
+    section { padding: 80px 40px; border-top: 1px solid var(--line); }
+    h2{ font-family:'Orbitron'; letter-spacing:2px; font-size:28px; margin-bottom:30px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+    .card {
+      background: linear-gradient(145deg,#1d1d1d,#090909);
+      padding: 24px; border: 1px solid var(--line); position: relative; overflow: hidden;
+    }
+    .card::before{ content:""; position:absolute; top:0; left:0; width:100%; height:2px; background: var(--accent); opacity:0.3; }
+    .card h3 { margin-top: 0; color: var(--accent); font-size:16px; letter-spacing:1px; }
+    .card p{ color:var(--muted); font-size:14px; }
+
+    .about-box, .contact-box p { color:var(--muted); }
+
+    footer {
+      padding: 40px; text-align: center; border-top: 1px solid var(--line);
+      color: #555; font-size: 12px; letter-spacing:1px;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<header>
+  <div class="logo">JACKS <span>LABS</span></div>
+  <nav>
+    <a href="#services">Capabilities</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>From Lab to Field</h1>
+  <p>Advanced electronics, R&D, and applied engineering systems designed for real-world deployment and high-reliability environments.</p>
+  <a href="#contact" class="btn">Establish Contact</a>
+</section>
+
+<section id="services">
+  <h2>Capabilities</h2>
+  <div class="grid">
+    <div class="card"><h3>R&D / Prototyping</h3><p>Rapid concept development into functional, testable hardware systems.</p></div>
+    <div class="card"><h3>Electronics Engineering</h3><p>Embedded systems, PCB design, and validation under real conditions.</p></div>
+    <div class="card"><h3>IP Development</h3><p>Creation and structuring of proprietary technology and licensing assets.</p></div>
+    <div class="card"><h3>Technical Consulting</h3><p>System-level advisory, integration, and performance optimization.</p></div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about-box">
+    Jacks Labs is an independent engineering unit led by Jaka Bevk. The lab focuses on development of advanced technical systems, bridging early-stage research and field deployment. Work spans electronics, applied R&D, and integration of high-performance technologies for demanding environments.
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="contact-box">
+	<p><a href="https://si.linkedin.com/in/jaka-bevk-8b737516b">
+	<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IiNDMUM1QzkiPjxwYXRoIGZpbGw9IiNDMUM1QzkiIGQ9Ik0xOSAzYTIgMiAwIDAgMSAyIDJ2MTRhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJWNWEyIDIgMCAwIDEgMi0yaDE0bS0uNSAxNS41di01LjNhMy4yNiAzLjI2IDAgMCAwLTMuMjYtMy4yNmMtLjg1IDAtMS44NC41Mi0yLjMyIDEuM3YtMS4xMWgtMi43OXY4LjM3aDIuNzl2LTQuOTNjMC0uNzcuNjItMS40IDEuMzktMS40YTEuNCAxLjQgMCAwIDEgMS40IDEuNHY0LjkzaDIuNzlNNi44OCA4LjU2YTEuNjggMS42OCAwIDAgMCAxLjY4LTEuNjhjMC0uOTMtLjc1LTEuNjktMS42OC0xLjY5YTEuNjkgMS42OSAwIDAgMC0xLjY5IDEuNjljMCAuOTMuNzYgMS42OCAxLjY5IDEuNjhtMS4zOSA5Ljk0di04LjM3SDUuNXY4LjM3aDIuNzdaIi8+PC9zdmc+" width="30" height="30" alt="Linkedin" /></a>&nbsp;<b>Jaka Bevk</b></p>
+    <p>Location: Slovenia, EU</p>
+    <p>Availability: Open for collaboration and consulting</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 JACKS LABS — ENGINEERED SYSTEMS
+</footer>
+
+<script>
+// Floating particles with color shift + glow effect
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+
+let layers = [
+  { particles: [], count: 68, connectDist: 130, alpha: 0.15, parallax: 0.03,  noiseStrength: 0.09,  glow: 8 },
+  { particles: [], count: 50, connectDist: 155, alpha: 0.25, parallax: 0.14,  noiseStrength: 0.115, glow: 12 },
+  { particles: [], count: 35, connectDist: 190, alpha: 0.36, parallax: 0.31,  noiseStrength: 0.145, glow: 18 }
+];
+
+let mouse = { x: 0, y: 0 };
+let time = 0;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createParticles();
+}
+
+function createParticles() {
+  layers.forEach(layer => {
+    layer.particles = [];
+    for (let i = 0; i < layer.count; i++) {
+      layer.particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 2.3 + 0.4,
+        noiseOffsetX: Math.random() * 2000,
+        noiseOffsetY: Math.random() * 2000,
+        hueOffset: Math.random() * 360
+      });
+    }
+  });
+}
+
+function noise(x, y) {
+  return Math.sin(x * 0.06) * Math.cos(y * 0.08) * 1.2 +
+         Math.sin(x * 0.14 + y * 0.12) * 0.7;
+}
+
+function getParticleColor(hueOffset) {
+  const hue = 195 + Math.sin(time * 0.0012 + hueOffset) * 28;
+  return `hsl(${hue}, 90%, 72%)`;
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  time += 1;
+
+  layers.forEach(layer => {
+    const offsetX = (mouse.x - canvas.width / 2) * layer.parallax;
+    const offsetY = (mouse.y - canvas.height / 2) * layer.parallax;
+
+    // Update particles
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p = layer.particles[i];
+
+      const nx = noise(p.x * 0.0025 + p.noiseOffsetX + time * 0.008,
+                       p.y * 0.0025 + p.noiseOffsetY + time * 0.008);
+      const ny = noise(p.y * 0.0025 + p.noiseOffsetY + time * 0.009,
+                       p.x * 0.0025 + p.noiseOffsetX + time * 0.008);
+
+      p.vx += nx * layer.noiseStrength;
+      p.vy += ny * layer.noiseStrength;
+      p.vx += (Math.random() - 0.5) * 0.12;
+      p.vy += (Math.random() - 0.5) * 0.12;
+
+      // Mouse repulsion
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const distSq = dx*dx + dy*dy;
+      if (distSq < 245*245 && distSq > 20) {
+        const dist = Math.sqrt(distSq);
+        const force = (245 - dist) / 245 * 5.8;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      p.vx *= 0.0855;
+      p.vy *= 0.0855;
+
+      // Wrap
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    }
+
+    // Draw connections
+    ctx.lineWidth = 0.9;
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p1 = layer.particles[i];
+      const px1 = p1.x + offsetX;
+      const py1 = p1.y + offsetY;
+
+      for (let j = i + 1; j < layer.particles.length; j++) {
+        const p2 = layer.particles[j];
+        const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        if (d < layer.connectDist) {
+          ctx.globalAlpha = layer.alpha * (1 - d / layer.connectDist) * 0.92;
+          ctx.strokeStyle = '#2D9CDB';
+          ctx.beginPath();
+          ctx.moveTo(px1, py1);
+          ctx.lineTo(p2.x + offsetX, p2.y + offsetY);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw glowing particles
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p = layer.particles[i];
+      const color = getParticleColor(p.hueOffset);
+
+      // Glow layer
+      ctx.shadowColor = color;
+      ctx.shadowBlur = layer.glow;
+      ctx.fillStyle = color;
+      ctx.globalAlpha = layer.alpha * 1.8;
+
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 1.15, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core (brighter, sharper)
+      ctx.shadowBlur = 6;
+      ctx.globalAlpha = 0.095;
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 0.75, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  // Mouse connection lines
+  ctx.lineWidth = 1.4;
+  layers.forEach(layer => {
+    const offsetX = (mouse.x - canvas.width / 2) * layer.parallax;
+    const offsetY = (mouse.y - canvas.height / 2) * layer.parallax;
+
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p = layer.particles[i];
+      const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+      if (d < 205) {
+        ctx.globalAlpha = 0.35 * (1 - d / 205);
+        ctx.strokeStyle = '#2D9CDB';
+        ctx.beginPath();
+        ctx.moveTo(mouse.x, mouse.y);
+        ctx.lineTo(p.x + offsetX, p.y + offsetY);
+        ctx.stroke();
+      }
+    }
+  });
+
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animate);
+}
+
+// Init
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+function init() {
+  resizeCanvas();
+  animate();
+}
+
+window.onload = init;
+</script>
+
+</body>
+</html>
