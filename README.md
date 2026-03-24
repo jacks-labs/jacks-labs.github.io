@@ -1,6 +1,3 @@
-# jacks-labs.github.io
-Jacks Labs website
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
