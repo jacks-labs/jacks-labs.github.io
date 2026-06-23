@@ -753,6 +753,94 @@
     .eu-map-wrap:hover .eu-map-base { opacity: 0; }
     .eu-map-wrap:hover .eu-map-hover { opacity: 1; }
 
+    /* ── Hamburger menu ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 26px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 200;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile overrides ── */
+    @media (max-width: 768px) {
+      /* Header */
+      header { padding: 16px 20px; }
+
+      /* Show hamburger, hide nav by default */
+      .nav-toggle { display: flex; }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(14,14,14,0.97);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        padding: 20px 24px;
+        gap: 4px;
+        z-index: 100;
+      }
+      nav.open { display: flex; }
+      nav a { margin-left: 0; padding: 10px 0; font-size: 14px; border-bottom: 1px solid var(--line); }
+      nav a:last-child { border-bottom: none; }
+
+      /* Hero */
+      .hero { padding: 100px 20px 60px; }
+      .hero h1 { font-size: 28px; }
+
+      /* Section headings */
+      h2 { font-size: 28px; }
+
+      /* Sections */
+      section, .services-grid-section, .skills-section { padding: 48px 20px; }
+
+      /* Showcase: replace fixed height with aspect-ratio */
+      .showcase-container {
+        height: auto !important;
+        aspect-ratio: 16 / 9;
+        max-width: 100%;
+      }
+
+      /* Slideshow fixed height override */
+      .slideshow-container { height: auto; }
+
+      /* Login input width */
+      .login-form input { width: 100%; max-width: 320px; }
+
+      /* EU map */
+      .eu-map-wrap img { max-width: 100%; height: auto; }
+
+      /* Footer */
+      footer { padding: 28px 20px; }
+
+      /* Clients padding */
+      .clients { padding: 10px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 24px; }
+      h2 { font-size: 24px; }
+      .hero-stat .stat-number { font-size: 22px; }
+      .hero-stats { gap: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -763,7 +851,10 @@
   <a href="https://jacks-labs.github.io/" class="logo-link">
     <div class="logo">JACKS <span>LABS</span></div>
   </a>
-  <nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="main-nav">
     <a href="#top">Home</a>
     <a href="#services">Services</a>
     <a href="#success-stories">Showcases</a>
@@ -1512,6 +1603,19 @@ function init() {
 }
 
 window.onload = init;
+
+// Hamburger menu
+document.getElementById('nav-toggle').addEventListener('click', function () {
+  this.classList.toggle('open');
+  document.getElementById('main-nav').classList.toggle('open');
+});
+// Close nav when a link is tapped on mobile
+document.querySelectorAll('#main-nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('nav-toggle').classList.remove('open');
+    document.getElementById('main-nav').classList.remove('open');
+  });
+});
 
 async function handleContactForm(event) {
   event.preventDefault();
