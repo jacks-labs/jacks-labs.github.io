@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacks Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACFUlEQVRYhe2WPYsTURSGn5mdZCAh6sZNF9RiiVtZ+Acsl+D+hO1SCxYW/oYUNtbbBsFgI4irpZ1go2QIYiUGJFkiRiLMZD7kXO/AJIyzsyuZNHnhMnfuPXPOO+frXrbYYtMwxuPxeRSuA/eBx8BBvLhrG08G0+DR0avZjV3b6AAPgVriu2Ogl6X4Y2cf6wIOMPRIvgt2gKvAlRX5Sh6lpmmaGIaRQ/SfCIAZ8GtF4HcuAr7vE4bh/5K4NMz5fI6QEE9sApbnecqsZVlUKhVFRtaK8ojKATEongiCgCiKCvWD8rtt20g59no9BoOB8kShBMTgdDql3+8zHA6pVquFEbBarZaatNttNWJIDhRRHamp7ziOMi6JuW6kEpBQSEKWy+XNEBiNRqoadG+Qsgj1sxgCtdrfM0WXpMjYuucnEayNQEpXrBZKoNvtJl9vAnf1iRfDBX6sjcBkMqFUKsUlKMbvAdf0tvz5N+D7Obq9PAQsx3EO0jbq9fr+YrG4rS8jtxJbkhhvgQ9Zis9OT57vHXYeZIiEd06+mFaz2fwkRFY2Xdd1S57nxR6KEtUwBF4CgywCe4dySeJphojoMyzf99O6jS2JKL1Ah8EHvgLvgDfA+yzjOaEUW9Hy8Rf33Ui3YYn3Tx3zz8Ap8FqvxdjR17HaJUgsuX7JuE62pPEXjUbjWSzsz87iaSw3uyAJPyX0W2xRMIA/CLaxPHa6zKIAAAAASUVORK5CYII=">
+
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #0E0E0E;
+      --line: #2A2A2A;
+      --accent: #2D9CDB;	
+      --text: #EAEAEA;
+      --muted: #8A8F98;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 1% 1%, #010101, #151515);
+      color: var(--text);
+    }
+
+    header, section, footer { position: relative; z-index: 2; }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(25,25,25,0.7);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 20px; letter-spacing: 2px; }
+    .logo span { color: var(--accent); }
+    nav a { margin-left: 24px; text-decoration: none; color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+    nav a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 200px 40px; text-align: center; }
+    .hero h1 { font-family: 'Orbitron', sans-serif; font-size: 50px; margin: 0 0 20px; letter-spacing: 2px; }
+    .hero p { font-size: 18px; color: var(--muted); max-width: 700px; margin: 0 auto 40px; }
+
+    .btn {
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: 0.3s;
+    }
+    .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px rgba(45,156,219,0.4); }
+
+    /* Sections */
+    section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--text);
+      letter-spacing: 2px;
+      font-size: 42px;
+      margin-bottom: 20px;
+	  margin-top: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Cookie Banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #0E0E0E;
+      border-top: 1px solid var(--accent);
+      padding: 16px 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      z-index: 1000;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+    #cookie-banner p { max-width: 700px; color: var(--muted); margin: 0; }
+    .cookie-btn {
+      padding: 8px 20px;
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .cookie-btn.accept { background: var(--accent); color: #000; }
+
+    /* Services 2x2 grid */
+    .services-grid-section {
+      padding: 60px 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .service-card .service-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+      text-align: center;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border: 2px solid var(--text);
+      border-radius: 25px;
+      box-shadow: 0 0 18px rgba(45, 156, 219, 0.12), inset 0 0 0 1px rgba(45,156,219,0.08);
+      background: #090909;
+    }
+
+    .slides-wrapper {
+      position: absolute;
+      display: flex;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-fade-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity 5.0s ease, transform 5.0s ease;
+      transform:scale(1.50);
+    }
+
+    .service-fade-slide.active{
+      opacity:1;
+      transform:scale(1);
+      z-index:2;
+    }
+
+    .service-fade-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* Gradient overlay + label */
+    .slide-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px 16px 2px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 40%, transparent 55%);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 55;
+    }
+
+    .service-card-title {
+      padding: 0px 16px 0px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+	  font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      pointer-events: none;
+      z-index: 55;
+    }
+
+    /* Dot indicators */
+    .slide-dots {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      display: flex;
+      gap: 5px;
+      z-index: 100;
+    }
+
+    .slide-dots span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.3s;
+    }
+
+    .slide-dots span.active {
+      background: var(--accent);
+
+    }
+
+    /* Angular nav arrows */
+    .slide-prev, .slide-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.55);
+      color: var(--accent);
+      border: 1px solid rgba(45,156,219,0.35);
+      width: 34px;
+      height: 34px;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s, background 0.25s;
+    }
+
+    .slideshow-container:hover .slide-prev,
+    .slideshow-container:hover .slide-next {
+      opacity: 1;
+    }
+
+    .slide-prev:hover,
+    .slide-next:hover {
+      background: rgba(45,156,219,0.2);
+    }
+
+    .slide-prev { left: 10px; }
+    .slide-next { right: 10px; }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .slide-prev, .slide-next { opacity: 1; }
+    }
+	
+	.clients {
+	  padding: 10px 40px;
+	}
+
+    .service-desc {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.8;
+    }
+
+    /* About */
+    .about-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .about-text {
+      flex: 1;
+      max-width: 560px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0 0 16px;
+    }
+
+    .about-image img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* Contact */
+    .contact-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      justify-content: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .contact-info a { color: var(--muted); text-decoration: none; }
+    .contact-info a:hover { color: var(--accent); }
+
+    .contact-profile img {
+      display: block;
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+    }
+	
+    .contact-profile img:hover {
+      border-color: var(--accent);
+    }
+
+    .contact-tagline {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-top: 32px;
+    }
+	
+	.contact-form {
+	 width: 100%;
+	 max-width: 650px;
+	 margin-top: 40px;
+	 display: flex;
+	 flex-direction: column;
+	 gap: 16px;
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+	background: rgba(20,20,20,0.9);
+	border: 1px solid var(--line);
+	color: var(--text);
+	padding: 14px 16px;
+	font-size: 14px;
+	font-family: inherit;
+	outline: none;
+	transition: border-color 0.3s;
+	}
+	
+	.contact-form input:focus,
+	.contact-form textarea:focus {
+	border-color: var(--accent);
+	}
+	
+	.contact-form textarea {
+	min-height: 180px;
+	resize: vertical;
+	}
+	
+	.contact-form button {
+	align-self: center;
+	cursor: pointer;
+	}
+	
+	#contact-status {
+	min-height: 24px;
+	text-align: center;
+	font-size: 14px;
+	color: var(--muted);
+	}
+	
+	.hidden-field {
+	display: none;
+	}
+
+    /* Login */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .login-form label {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .login-form input {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 16px;
+      font-size: 14px;
+      width: 280px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .login-form input:focus { border-color: var(--accent); }
+
+    #login-status {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      min-height: 20px;
+    }
+
+    /* Particle canvas */
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 100px 20px 60px; }
+      .hero h1 { font-size: 36px; }
+      section, .service-section { padding: 60px 20px; }
+      .slideshow-container { height: 260px; }
+      .about-inner { flex-direction: column; align-items: center; text-align: center; }
+      .contact-inner { flex-direction: column; align-items: center; }
+      .contact-info { align-items: center; }
+    }
+	
+	/* Clients logo strip */
+	.logo-track-wrapper {
+	overflow: hidden;
+	width: 100%;
+	mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+	-webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+	}
+
+	.clients {
+	background: rgba(255, 255, 255, 0.05);
+	}
+
+	.logo-track {
+	display: flex;
+	align-items: center;
+	gap: 80px;
+	width: max-content;
+	animation: logo-scroll 35s linear infinite;
+	padding: 20px 0;
+	will-change: transform;
+	}
+
+	.logo-track:hover {
+	animation-play-state: paused;
+	}
+
+	.logo-track img {
+	height: 24px;
+	width: auto;
+	opacity: 0.55;
+	filter: grayscale(100%) brightness(1.8);
+	transition: opacity 0.3s, filter 0.3s;
+	flex-shrink: 0;
+	}
+
+	.logo-track img:hover {
+	opacity: 1;
+	filter: grayscale(0%) brightness(1);
+	}
+
+	/* Translate exactly -50%: both halves are identical so the reset is invisible */
+	@keyframes logo-scroll {
+	0%   { transform: translateX(0); }
+	100% { transform: translateX(-50%); }
+	}
+    /* Deployed Solutions — restore original large size */
+    .showcase-container {
+      aspect-ratio: unset;
+      max-width: 916px;
+      height: 480px;
+      margin: 0 auto 30px;
+      border-radius: 25px;
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin: 48px auto 0;
+      max-width: 700px;
+      border-top: 1px solid var(--line);
+      padding-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat .stat-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .hero-stat .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    /* Skills section */
+    .skills-section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .skill-group {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .skill-group h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(45,156,219,0.07);
+      border: 1px solid rgba(45,156,219,0.2);
+      border-radius: 3px;
+      padding: 4px 10px;
+      letter-spacing: 0.5px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .skill-tag:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(45,156,219,0.12);
+    }
+
+    /* Improved About */
+    .about-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 56px;
+      justify-content: center;
+      text-align: left;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      flex-shrink: 0;
+    }
+
+    .about-profile img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      display: block;
+      transition: border-color 0.3s;
+    }
+
+    .about-profile img:hover { border-color: var(--accent); }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 160px;
+    }
+
+    .about-highlight {
+      background: rgba(45,156,219,0.07);
+      border: 1px solid rgba(45,156,219,0.2);
+      border-radius: 4px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+
+    .about-highlight .hl-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .about-highlight .hl-label {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .about-right {
+      flex: 1;
+      max-width: 560px;
+    }
+
+    .about-right p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.85;
+      margin: 0 0 16px;
+    }
+
+    .about-right p.about-lead {
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .eu-map-wrap-right {
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner { flex-direction: column; align-items: center; }
+      .about-right { text-align: center; }
+      .about-highlights { flex-direction: row; width: auto; flex-wrap: wrap; justify-content: center; }
+      .hero-stats { gap: 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-stat .stat-number { font-size: 24px; }
+    }
+    .eu-map-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .eu-map-wrap img {
+      display: block;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .eu-map-wrap .eu-map-hover {
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+    }
+
+    .eu-map-wrap:hover .eu-map-base { opacity: 0; }
+    .eu-map-wrap:hover .eu-map-hover { opacity: 1; }
+
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<header>
+  <a href="https://jacks-labs.github.io/" class="logo-link">
+    <div class="logo">JACKS <span>LABS</span></div>
+  </a>
+  <nav>
+    <a href="#top">Home</a>
+    <a href="#services">Services</a>
+    <a href="#success-stories">Showcases</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="#login">Login</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="container">
+    <h1>Hardware That Connects.<br>Products That Ship.</h1>
+    <p>Jacks Labs is a specialised engineering consultancy in wireless IoT, multilayer HDI PCB design, and full product lifecycle — from architecture to volume production. 16+ years of delivery across industrial, aerospace, and consumer sectors.</p>
+    <a href="#contact" class="btn">Get in Touch</a>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-number">16+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">10k+</div>
+        <div class="stat-label">Deployed Units</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Commercial Products</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Industry Sectors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services-grid-section" id="services">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom: 40px;">Services</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+		<div class="service-card-title">Hardware Design &amp; Prototyping</div>
+        <div class="slideshow-container">
+          <div id="slides0"></div>
+          <button class="slide-prev" onclick="moveSlide(0, -1)">&#8249;</button>
+          <button class="slide-next" onclick="moveSlide(0, 1)">&#8250;</button>
+          <div class="slide-label">Custom text for each image here</div>
+          <div class="slide-dots" id="dots0"></div>
+        </div>
+        <p class="service-desc">From initial concept through functional, testable hardware — rapid iteration cycles with a focus on reliability and real-world performance.</p>
+      </div>
+
+      <div class="service-card">
+	    <div class="service-card-title">Mechanical CAD Engineering</div>
+        <div class="slideshow-container">
+          <div id="slides1"></div>
+          <button class="slide-prev" onclick="moveSlide(1, -1)">&#8249;</button>
+          <button class="slide-next" onclick="moveSlide(1, 1)">&#8250;</button>
+          <div class="slide-label">Custom text for each image here</div>
+          <div class="slide-dots" id="dots1"></div>
+        </div>
+        <p class="service-desc">Precision 3D modelling, enclosures, and mechanical integration — designed for manufacturability and tight tolerance requirements.</p>
+      </div>
+
+      <div class="service-card">
+	    <div class="service-card-title">Software Development</div>
+        <div class="slideshow-container">
+          <div id="slides2"></div>
+          <button class="slide-prev" onclick="moveSlide(2, -1)">&#8249;</button>
+          <button class="slide-next" onclick="moveSlide(2, 1)">&#8250;</button>
+          <div class="slide-label">Custom text for each image here</div>
+          <div class="slide-dots" id="dots2"></div>
+        </div>
+        <p class="service-desc">Embedded firmware, low-level drivers, and system software tailored to resource-constrained and performance-critical environments.</p>
+      </div>
+
+      <div class="service-card">
+	    <div class="service-card-title">IP Generation &amp; Technical Consulting</div>
+        <div class="slideshow-container">
+          <div id="slides3"></div>
+          <button class="slide-prev" onclick="moveSlide(3, -1)">&#8249;</button>
+          <button class="slide-next" onclick="moveSlide(3, 1)">&#8250;</button>
+          <div class="slide-label">Custom text for each image here</div>
+          <div class="slide-dots" id="dots3"></div>
+        </div>
+        <p class="service-desc">Development of proprietary technology, licensing assets, and high-level advisory on system architecture and performance optimisation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Deployed Solutions -->
+<section class="success-stories" id="success-stories">
+  <div class="container">
+    <h2>Deployed Solutions</h2>
+    <p class="service-desc" style="margin-bottom: 30px;">Engineering solutions co-developed with clients, partners and sponsors — successfully launched and adopted in commercial, industrial and other sectors.</p>
+    <div class="slideshow-container showcase-container">
+      <div class="slides-wrapper" id="slides-showcase"></div>
+      <button class="slide-prev" onclick="moveShowcase(-1)">&#8249;</button>
+      <button class="slide-next" onclick="moveShowcase(1)">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- Clients / Partners -->
+<section class="clients" id="clients">
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+      <!-- First set -->
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.u-blox.com/en"><img src="images/references/logo1.png" alt="Ref 1"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.smt.si/"><img src="images/references/logo2.png" alt="Ref 2"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://sunedison.eu/"><img src="images/references/logo3.png" alt="Ref 3"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://adam-robot.com/"><img src="images/references/logo4.png" alt="Ref 4"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="http://www.jbtech.si/"><img src="images/references/logo5.png" alt="Ref 5"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.c-astral.com/en/unmanned-systems/sqa-evtol"><img src="images/references/logo6.png" alt="Ref 6"></a>
+	  <!-- <a  target="_blank" rel="noopener noreferrer" href="https://www.sgconnect.eu/sl/produkti/synaptic"><img src="images/references/logo7.png" alt="Ref 7"></a> -->
+	  <img src="images/references/logo8.png" alt="Ref 8">
+	  <a  target="_blank" rel="noopener noreferrer" href="https://melonframe.com/"><img src="images/references/logo9.png" alt="Ref 9"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://www.u-blox.com/en/use-case/tech/sustainable-beehive-system"><img src="images/references/logo10.png" alt="Ref 10"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://fireware.nl/en/simulate-a-extinguisher-exercise-in-a-setting-free-of-fire-water-foam-co2-or-powder-with-the-new-apollo-led-practice-extinguishers/"><img src="images/references/logo11.png" alt="Ref 11"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://melonframe.com/"><img src="images/references/logo12.png" alt="Ref 12"></a>
+      <!-- Exact duplicate for seamless loop -->
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.u-blox.com/en"><img src="images/references/logo1.png" alt="Ref 1"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.smt.si/"><img src="images/references/logo2.png" alt="Ref 2"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://sunedison.eu/"><img src="images/references/logo3.png" alt="Ref 3"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://adam-robot.com/"><img src="images/references/logo4.png" alt="Ref 4"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="http://www.jbtech.si/"><img src="images/references/logo5.png" alt="Ref 5"></a>
+      <a  target="_blank" rel="noopener noreferrer" href="https://www.c-astral.com/en/unmanned-systems/sqa-evtol"><img src="images/references/logo6.png" alt="Ref 6"></a>
+	  <!-- <a  target="_blank" rel="noopener noreferrer" href="https://www.sgconnect.eu/sl/produkti/synaptic"><img src="images/references/logo7.png" alt="Ref 7"></a> -->
+	  <img src="images/references/logo8.png" alt="Ref 8">
+	  <a  target="_blank" rel="noopener noreferrer" href="https://melonframe.com/"><img src="images/references/logo9.png" alt="Ref 9"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://www.u-blox.com/en/use-case/tech/sustainable-beehive-system"><img src="images/references/logo10.png" alt="Ref 10"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://fireware.nl/en/simulate-a-extinguisher-exercise-in-a-setting-free-of-fire-water-foam-co2-or-powder-with-the-new-apollo-led-practice-extinguishers/"><img src="images/references/logo11.png" alt="Ref 11"></a>
+	  <a  target="_blank" rel="noopener noreferrer" href="https://melonframe.com/"><img src="images/references/logo12.png" alt="Ref 12"></a>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <h2>About</h2>
+    <div class="about-inner">
+
+      <div class="about-left">
+        <div class="about-profile">
+          <img src="images/other/profile_pic.png" alt="Jaka Bevk — Jacks Labs">
+        </div>
+        <div class="about-highlights">
+          <div class="about-highlight">
+            <div class="hl-number">16+</div>
+            <div class="hl-label">Years in HW</div>
+          </div>
+          <div class="about-highlight">
+            <div class="hl-number">11y</div>
+            <div class="hl-label">at U-Blox AG</div>
+          </div>
+          <div class="about-highlight">
+            <div class="hl-number">10k+</div>
+            <div class="hl-label">Units Shipped</div>
+          </div>
+          <div class="about-highlight">
+            <div class="hl-number">EU</div>
+            <div class="hl-label">Based, SI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <p class="about-lead">Jaka Bevk is the founder of Jacks Labs — a hardware and embedded systems engineering consultancy based in Slovenia, central Europe.</p>
+        <p>With 16+ years of hands-on development experience, Jaka specialises in complex connected electronics: multilayer HDI PCB design, wireless integration (LTE/WiFi/BLE/GNSS), embedded firmware, and taking products from initial concept through to volume production.</p>
+        <p>Prior to founding Jacks Labs, Jaka spent 11 years at U-Blox as a Senior Engineer in Module Design, taking part in volume development of cellular IoT modules (LTE-M/NB-IoT) and building production flashing, testing infrastructure, and coexistence systems for multi-radio platforms.</p>
+        <p>Independent work spans industrial IoT gateways, UAV autopilot electronics, agricultural robotics, consumer smart devices, and safety training systems — several of which have reached volume deployment across Europe.</p>
+        <p>Open for project-based collaboration, consulting engagements, and long-term technical partnerships.</p>
+        <div class="eu-map-wrap eu-map-wrap-right">
+          <img src="images/other/eu_map.png" alt="Slovenia, central EU" width="320" height="200" class="eu-map-base">
+          <img src="images/other/eu_map_hov.png" alt="Slovenia highlighted" width="320" height="200" class="eu-map-hover">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Skills & Technologies -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <h2>Technologies &amp; Tools</h2>
+    <p style="color:var(--muted);font-size:15px;margin:0 auto 48px;max-width:600px;">The stack behind the work — tools and technologies used across hardware, firmware, and mechanical development.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h4>PCB &amp; Hardware Design</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Altium Designer</span>
+          <span class="skill-tag">Cadence</span>
+          <span class="skill-tag">Multilayer HDI PCB</span>
+          <span class="skill-tag">High-Speed Design</span>
+          <span class="skill-tag">Signal Integrity</span>
+          <span class="skill-tag">DFM / DFT</span>
+          <span class="skill-tag">Schematic Capture</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h4>Wireless &amp; Connectivity</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">LTE / LTE-M / NB-IoT</span>
+          <span class="skill-tag">WiFi</span>
+          <span class="skill-tag">BLE / Bluetooth</span>
+          <span class="skill-tag">GNSS / GPS</span>
+          <span class="skill-tag">NFC</span>
+          <span class="skill-tag">Ethernet</span>
+          <span class="skill-tag">RS232</span>
+		  <span class="skill-tag">P1</span>
+		  <span class="skill-tag">M-Bus</span>
+		  <span class="skill-tag">CAN</span>
+		  <span class="skill-tag">DSI/MIPI/DVI</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h4>Embedded Systems</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">STM32</span>
+          <span class="skill-tag">Espressif (ESP32)</span>
+          <span class="skill-tag">Nordic nRF</span>
+          <span class="skill-tag">Atmel / AVR</span>
+          <span class="skill-tag">MicroChip</span>
+          <span class="skill-tag">Freescale</span>
+          <span class="skill-tag">RTOS</span>
+          <span class="skill-tag">Linux Yocto</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h4>Mechanical &amp; 3D Design</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">3D Modelling</span>
+          <span class="skill-tag">Technical Drawings</span>
+          <span class="skill-tag">Fine Mechanics</span>
+          <span class="skill-tag">Material Selection</span>
+          <span class="skill-tag">PhotoView Rendering</span>
+          <span class="skill-tag">Motion Study</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h4>Software &amp; Firmware</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">C / C++</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Qt Framework</span>
+          <span class="skill-tag">Computer Vision (OpenCV)</span>
+          <span class="skill-tag">REST / UDP / MQTT</span>
+          <span class="skill-tag">Cross-platform Apps</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h4>Production &amp; Testing</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Production Test/Flash Tools</span>
+          <span class="skill-tag">Automated Test Rigs</span>
+          <span class="skill-tag">Climatic Chamber Testing</span>
+          <span class="skill-tag">Volume Optimisation</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+
+    <div class="contact-box">
+      <div class="contact-inner">
+
+        <div class="contact-profile">
+          <img src="images/other/profile_pic.png" alt="Jaka Bevk — Jacks Labs">
+        </div>
+
+        <div class="contact-info">
+        <p>
+		<a target="_blank" rel="noopener noreferrer" href="https://si.linkedin.com/in/jaka-bevk-8b737516b"><img src='images/icons/linked_icon_gray.png' height="30" onmouseover="this.src='images/icons/linked_icon_accent.png';" onmouseout="this.src='images/icons/linked_icon_gray.png';" /></a>    
+        <strong>Jaka Bevk</strong>
+        </p>
+		<p style="display:flex; align-items:center; gap:17px; margin:8px 0;">
+		<a target="_blank" rel="noopener noreferrer" href="mailto:someone@mozilla.org"><img src='images/icons/env_icon_gray.png' height="24" onmouseover="this.src='images/icons/env_icon_accent.png';" onmouseout="this.src='images/icons/env_icon_gray.png';" /></a>
+		jakabevk@gmail.com
+		</p>
+        <p style="display:flex; align-items:center; gap:17px; margin:8px 0;">
+		<a target="_blank" rel="noopener noreferrer" href="https://jacks-labs.github.io"><img src='images/icons/link_icon_gray.png' height="32" onmouseover="this.src='images/icons/link_icon_accent.png';" onmouseout="this.src='images/icons/link_icon_gray.png';" /></a>
+		jacks-labs.github.io
+		</p>	
+		<p style="display:flex; align-items:center; gap:15px; margin:8px 0;">
+		<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/place/Slovenia"><img src='images/icons/location_icon_gray.png' height="32" onmouseover="this.src='images/icons/location_icon_accent.png';" onmouseout="this.src='images/icons/location_icon_gray.png';" /></a>
+		Slovenia, central EU
+		</p>
+        </div>
+
+      </div>
+
+      <p class="contact-tagline">
+        Have a project in mind?<br><br>
+        Send me a description and I'll get back to you.
+      </p>
+
+	<form id="contact-form" class="contact-form">
+	
+	<input
+		type="hidden"
+		name="access_key"
+		value="c569d59f-1a2a-448d-8f65-f00afd85adb7">
+	
+	<input
+		type="hidden"
+		name="from_name"
+		value="Jacks Labs Website">
+	
+	<input
+		type="hidden"
+		name="redirect"
+		value="false">
+	
+	<input
+		type="text"
+		name="name"
+		placeholder="Your Name"
+		required>
+	
+	<input
+		type="email"
+		name="email"
+		placeholder="Your Email"
+		required>
+	
+	<input
+		type="text"
+		name="subject"
+		placeholder="Project Subject"
+		required>
+	
+	<textarea
+		name="message"
+		placeholder="Tell me about your project..."
+		required></textarea>
+	
+	<input
+		type="checkbox"
+		name="botcheck"
+		class="hidden-field">
+
+	<button type="submit" class="btn">
+		Send Message
+	</button>
+	
+	<p id="contact-status"></p>
+	
+	</form>
+    </div>
+  </div>
+</section>
+
+<!-- Client Portal -->
+<section class="login" id="login">
+  <div class="container">
+    <h2>Client Portal</h2>
+    <div class="login-form">
+      <div>
+        <label for="first">CLIENT ID</label>
+        <input type="text" id="first" name="client_id" placeholder="Enter Client ID" autocomplete="off">
+      </div>
+      <div>
+        <label for="password">ACCESS CODE</label>
+        <input type="password" id="password" name="access_code" placeholder="Enter Access Code" autocomplete="off">
+      </div>
+      <p id="login-status">Enter credentials to access the portal.</p>
+      <button id="login-btn" class="btn">Login</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 JACKS LABS — EMBEDDED SYSTEMS &nbsp;|&nbsp;
+  <a href="policy.html">Privacy &amp; Cookies Policy</a>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookie-banner">
+  <p>This website uses cookies to remember your preferences. By continuing to browse, you agree to our use of cookies in accordance with EU regulations. <a href="policy.html" style="color:var(--accent);">Learn more</a></p>
+  <button class="cookie-btn accept" onclick="acceptCookies()">Accept</button>
+  <button class="cookie-btn" onclick="declineCookies()">Decline</button>
+</div>
+
+<script>
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+
+let layers = [
+  { particles: [], count: 18, connectDist: 105, alpha: 0.11, parallax: 0.035, noiseStrength: 0.055, glow: 0 },
+  { particles: [], count: 14, connectDist: 130, alpha: 0.20, parallax: 0.11, noiseStrength: 0.085, glow: 0 },
+  { particles: [], count: 10, connectDist: 155, alpha: 0.30, parallax: 0.24, noiseStrength: 0.105, glow: 0 }
+];
+
+let mouse = { x: 0, y: 0 };
+let time = 0;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createParticles();
+}
+
+function createParticles() {
+  layers.forEach(layer => {
+    layer.particles = [];
+    for (let i = 0; i < layer.count; i++) {
+      layer.particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.7 + 0.4,
+        noiseOffsetX: Math.random() * 1400,
+        noiseOffsetY: Math.random() * 1400,
+        hueOffset: Math.random() * 360
+      });
+    }
+  });
+}
+
+function noise(x, y) {
+  return Math.sin(x * 0.075) * Math.cos(y * 0.095) * 0.85 + Math.sin(x * 0.17 + y * 0.14) * 0.45;
+}
+
+function getParticleColor(hueOffset) {
+  const hue = 195 + Math.sin(time * 0.0014 + hueOffset) * 26;
+  return `hsl(${hue}, 88%, 73%)`;
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  time += 1;
+
+  layers.forEach(layer => {
+    const offsetX = (mouse.x - canvas.width / 2) * layer.parallax;
+    const offsetY = (mouse.y - canvas.height / 2) * layer.parallax;
+
+    for (let p of layer.particles) {
+      const nx = noise(p.x * 0.0028 + p.noiseOffsetX + time * 0.0065, p.y * 0.0028 + p.noiseOffsetY);
+      const ny = noise(p.y * 0.0028 + p.noiseOffsetY + time * 0.0075, p.x * 0.0028 + p.noiseOffsetX);
+
+      p.vx += nx * layer.noiseStrength;
+      p.vy += ny * layer.noiseStrength;
+      p.vx += (Math.random() - 0.5) * 0.07;
+      p.vy += (Math.random() - 0.5) * 0.07;
+
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < 170 * 170 && distSq > 25) {
+        const dist = Math.sqrt(distSq);
+        const force = (170 - dist) / 170 * 3.2;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.915;
+      p.vy *= 0.915;
+
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    }
+
+    ctx.lineWidth = 0.7;
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p1 = layer.particles[i];
+      for (let j = i + 1; j < layer.particles.length; j++) {
+        const p2 = layer.particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const distSq = dx * dx + dy * dy;
+        const maxSq = layer.connectDist * layer.connectDist;
+        if (distSq < maxSq) {
+          ctx.globalAlpha = layer.alpha * (1 - distSq / maxSq) * 0.8;
+          ctx.strokeStyle = '#2D9CDB';
+          ctx.beginPath();
+          ctx.moveTo(p1.x + offsetX, p1.y + offsetY);
+          ctx.lineTo(p2.x + offsetX, p2.y + offsetY);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (let p of layer.particles) {
+      const color = getParticleColor(p.hueOffset);
+      ctx.fillStyle = color;
+      ctx.globalAlpha = layer.alpha * 1.55;
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 1.05, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 0.55, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animate);
+}
+
+// Pause animation when tab is not visible
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) requestAnimationFrame(animate);
+});
+
+// Seamless Infinite Slideshow (service galleries)
+let currentIndices = [0, 0, 0, 0];
+const galleryImages = [
+  ['images/slideshow1/slideshow1_image1.png','images/slideshow1/slideshow1_image2.png','images/slideshow1/slideshow1_image3.png','images/slideshow1/slideshow1_image4.png','images/slideshow1/slideshow1_image5.png'],
+  ['images/slideshow2/slideshow2_image1.png','images/slideshow2/slideshow2_image2.png','images/slideshow2/slideshow2_image3.png','images/slideshow2/slideshow2_image4.png','images/slideshow2/slideshow2_image5.png'],
+  ['images/slideshow3/slideshow3_image1.png','images/slideshow3/slideshow3_image2.png'],
+  ['images/slideshow4/slideshow4_image1.png','images/slideshow4/slideshow4_image2.png']
+];
+
+// Set the number of slides independently for each slideshow (0=Hardware, 1=CAD, 2=Software, 3=IP/Consulting)
+const slideCounts = [5, 5, 2, 2];
+
+const galleryLabels = [
+  ['Wireless Connectivity Modules','Multilayered HDI SOM Solutions','WiFi/Bluetooth Based Systems','IoT Multisensor Prototypes','Efficient PMIC Solutions'],
+  ['Enclosure Design For Manufacturing','High Precision Mechanics','Robust Mechatronic Systems','Robotic Mechanisms','DFM for CNC and Plasma'],
+  ['Linux/RTOS Based System Integration','Firmware Development and Debug'],
+  ['Custom IP Development','System Level Technical Advisory']
+];
+
+// Deployed Solutions slideshow
+// Set url to null for images with no link, or a full URL string to make the image clickable
+const showcaseImages = [
+  { src: 'images/showcases/showcase_image3.png', url: "https://www.c-astral.com/en/unmanned-systems/sqa-evtol" },
+  { src: 'images/showcases/showcase_image2.png', url: "https://adam-robot.com/" },
+  { src: 'images/showcases/showcase_image5.png', url: "https://melonframe.com/" },
+  { src: 'images/showcases/showcase_image7.png', url: "http://www.jbtech.si/simulated-rifle-scope.html" },
+  { src: 'images/showcases/showcase_image6.png', url: "https://www.u-blox.com/en/use-case/tech/sustainable-beehive-system" },
+  { src: 'images/showcases/showcase_image1.png', url: "https://content.u-blox.com/sites/default/files/SARA-N2_ProductSummary_(UBX-16014015).pdf" },
+  { src: 'images/showcases/showcase_image4.png', url: "https://fireware.nl/en/simulate-a-extinguisher-exercise-in-a-setting-free-of-fire-water-foam-co2-or-powder-with-the-new-apollo-led-practice-extinguishers/" },
+];
+const totalShowcaseSlides = showcaseImages.length;
+let showcaseIndex = 0;
+
+function createSlideshows() {
+  // Service slideshows
+  for (let i = 0; i < 4; i++) {
+    const wrapper = document.getElementById(`slides${i}`);
+    const dotsContainer = document.getElementById(`dots${i}`);
+    const label = wrapper.parentElement.querySelector('.slide-label');
+
+    wrapper.innerHTML = '';
+    dotsContainer.innerHTML = '';
+
+    galleryImages[i].forEach((src, idx) => {
+      const slide = document.createElement('div');
+      slide.className = 'service-fade-slide' + (idx === 0 ? ' active' : '');
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `Image ${idx + 1}`;
+
+      slide.appendChild(img);
+      wrapper.appendChild(slide);
+    });
+
+    label.textContent = galleryLabels[i][0];
+
+    for (let d = 0; d < slideCounts[i]; d++) {
+      const dot = document.createElement('span');
+      if (d === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  // Deployed Solutions slideshow (manual only, no auto-scroll)
+  const sw = document.getElementById('slides-showcase');
+  sw.innerHTML = '';
+  for (let j = -1; j <= totalShowcaseSlides; j++) {
+    const realIndex = (j + totalShowcaseSlides) % totalShowcaseSlides;
+    const item = showcaseImages[realIndex];
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = `Deployed Solution ${realIndex + 1}`;
+    img.style.objectFit = 'contain';
+    if (item.url) {
+      const link = document.createElement('a');
+      link.href = item.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.title = 'View product';
+      link.style.cssText = 'display:block;width:100%;height:100%;';
+      link.appendChild(img);
+      slide.appendChild(link);
+    } else {
+      slide.appendChild(img);
+    }
+    sw.appendChild(slide);
+  }
+  sw.style.transform = 'translateX(-100%)';
+}
+
+function moveShowcase(direction) {
+  const wrapper = document.getElementById('slides-showcase');
+  showcaseIndex += direction;
+  wrapper.style.transition = 'transform 0.55s cubic-bezier(0.32, 0.72, 0, 1)';
+  wrapper.style.transform = `translateX(-${(showcaseIndex + 1) * 100}%)`;
+  setTimeout(() => {
+    if (showcaseIndex >= totalShowcaseSlides) {
+      showcaseIndex = 0;
+      wrapper.style.transition = 'none';
+      wrapper.style.transform = 'translateX(-100%)';
+    } else if (showcaseIndex < 0) {
+      showcaseIndex = totalShowcaseSlides - 1;
+      wrapper.style.transition = 'none';
+      wrapper.style.transform = `translateX(-${totalShowcaseSlides * 100}%)`;
+    }
+  }, 560);
+}
+
+function moveSlide(serviceIndex, direction) {
+  currentIndices[serviceIndex] =
+    (currentIndices[serviceIndex] + direction + slideCounts[serviceIndex]) % slideCounts[serviceIndex];
+
+  const wrapper = document.getElementById(`slides${serviceIndex}`);
+  const slides = wrapper.querySelectorAll('.service-fade-slide');
+
+  slides.forEach((slide, idx) => {
+    slide.classList.toggle('active', idx === currentIndices[serviceIndex]);
+  });
+
+  const label = wrapper.parentElement.querySelector('.slide-label');
+  label.textContent =
+    galleryLabels[serviceIndex][currentIndices[serviceIndex]];
+
+  updateDots(serviceIndex);
+}
+
+function updateDots(serviceIndex) {
+  const dots = document.querySelectorAll(`#dots${serviceIndex} span`);
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentIndices[serviceIndex]));
+}
+
+// Auto-slide
+setInterval(() => {
+  for (let i = 0; i < 4; i++) moveSlide(i, 1);
+}, 10000);
+
+// Cookie
+function acceptCookies() {
+  localStorage.setItem('cookiesAccepted', 'true');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function declineCookies() {
+  localStorage.setItem('cookiesAccepted', 'false');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
+// Login handler
+async function handleLogin() {
+  const clientId = document.getElementById('first').value.trim();
+  const accessCode = document.getElementById('password').value.trim();
+  const statusEl = document.getElementById('login-status');
+
+  if (!clientId || !accessCode) {
+    statusEl.textContent = 'Please enter both Client ID and Access Code.';
+    statusEl.style.color = '#ff6b6b';
+    return;
+  }
+
+  // Submit to Web3Forms 
+  try {
+    const formData = new FormData();
+    formData.append('access_key', 'c569d59f-1a2a-448d-8f65-f00afd85adb7');
+    formData.append('from_name', 'Jacks Labs — Portal Access Attempt');
+    formData.append('subject', 'Portal Login Attempt: ' + clientId);
+    formData.append('client_id', clientId);
+    formData.append('access_code', accessCode);
+    formData.append('redirect', 'false');
+
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+  } catch (_) {
+    // Silently ignore network errors 
+  }
+
+  // clear fields and show rejection
+  document.getElementById('first').value = '';
+  document.getElementById('password').value = '';
+  statusEl.textContent = 'Access denied. This Client ID is not recognised.';
+  statusEl.style.color = '#ff6b6b';
+}
+
+// Init
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+function init() {
+  resizeCanvas();
+  createSlideshows();
+  animate();
+
+  if (!localStorage.getItem('cookiesAccepted')) {
+    document.getElementById('cookie-banner').style.display = 'flex';
+  }
+
+  document.getElementById('login-btn').addEventListener('click', handleLogin);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  
+  document
+  .getElementById('contact-form')
+  .addEventListener('submit', handleContactForm);
+}
+
+window.onload = init;
+
+async function handleContactForm(event) {
+  event.preventDefault();
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('contact-status');
+
+  status.textContent = 'Sending...';
+  status.style.color = '#8A8F98';
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(
+      'https://api.web3forms.com/submit',
+      {
+        method: 'POST',
+        body: formData
+      }
+    );
+
+    const result = await response.json();
+
+    if (result.success) {
+      status.textContent =
+        '✓ Message sent successfully. I will get back to you soon.';
+      status.style.color = '#2ecc71';
+      form.reset();
+    } else {
+      throw new Error(result.message);
+    }
+
+  } catch (error) {
+    status.textContent =
+      '✗ Failed to send message. Please try again later.';
+    status.style.color = '#ff6b6b';
+    console.error(error);
+  }
+}
+
+</script>
+</body>
+</html>

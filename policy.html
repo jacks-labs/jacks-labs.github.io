@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy &amp; Cookies Policy — Jacks Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACFUlEQVRYhe2WPYsTURSGn5mdZCAh6sZNF9RiiVtZ+Acsl+D+hO1SCxYW/oYUNtbbBsFgI4irpZ1go2QIYiUGJFkiRiLMZD7kXO/AJIyzsyuZNHnhMnfuPXPOO+frXrbYYtMwxuPxeRSuA/eBx8BBvLhrG08G0+DR0avZjV3b6AAPgVriu2Ogl6X4Y2cf6wIOMPRIvgt2gKvAlRX5Sh6lpmmaGIaRQ/SfCIAZ8GtF4HcuAr7vE4bh/5K4NMz5fI6QEE9sApbnecqsZVlUKhVFRtaK8ojKATEongiCgCiKCvWD8rtt20g59no9BoOB8kShBMTgdDql3+8zHA6pVquFEbBarZaatNttNWJIDhRRHamp7ziOMi6JuW6kEpBQSEKWy+XNEBiNRqoadG+Qsgj1sxgCtdrfM0WXpMjYuucnEayNQEpXrBZKoNvtJl9vAnf1iRfDBX6sjcBkMqFUKsUlKMbvAdf0tvz5N+D7Obq9PAQsx3EO0jbq9fr+YrG4rS8jtxJbkhhvgQ9Zis9OT57vHXYeZIiEd06+mFaz2fwkRFY2Xdd1S57nxR6KEtUwBF4CgywCe4dySeJphojoMyzf99O6jS2JKL1Ah8EHvgLvgDfA+yzjOaEUW9Hy8Rf33Ui3YYn3Tx3zz8Ap8FqvxdjR17HaJUgsuX7JuE62pPEXjUbjWSzsz87iaSw3uyAJPyX0W2xRMIA/CLaxPHa6zKIAAAAASUVORK5CYII=">
+
+  <style>
+    :root {
+      --bg: #050505;
+      --panel: #0E0E0E;
+      --line: #2A2A2A;
+      --accent: #2D9CDB;
+      --text: #EAEAEA;
+      --muted: #8A8F98;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 1% 1%, #010101, #151515);
+      color: var(--text);
+    }
+
+    header, section, footer { position: relative; z-index: 2; }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: rgba(25,25,25,0.7);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo { font-family: 'Orbitron', sans-serif; font-size: 20px; letter-spacing: 2px; }
+    .logo span { color: var(--accent); }
+    nav a { margin-left: 24px; text-decoration: none; color: var(--muted); font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+    nav a:hover { color: var(--accent); }
+
+    h2 { font-family: 'Orbitron', sans-serif; letter-spacing: 2px; font-size: 28px; margin-bottom: 30px; }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .policy-section {
+      padding: 80px 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent);
+      font-size: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin: 40px 0 12px;
+    }
+
+    .policy-section h3:first-child { margin-top: 0; }
+
+    .policy-section p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0 0 16px;
+    }
+
+    .policy-section ul {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin: 0 0 16px;
+      padding-left: 24px;
+    }
+
+    .policy-section ul li { margin-bottom: 6px; }
+
+    .policy-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy-section a:hover { text-decoration: underline; }
+
+    .policy-section .meta {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 40px 0;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: #555;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 16px 20px; }
+      .policy-section { padding: 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<header>
+  <a href="index.html" class="logo-link">
+    <div class="logo">JACKS <span>LABS</span></div>
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+
+<section class="policy-section">
+  <div class="container">
+    <h2>Privacy &amp; Cookies Policy</h2>
+    <p class="meta">Last updated: June 2026 &nbsp;|&nbsp; Jacks Labs — Slovenia, EU</p>
+
+    <h3>1. Who We Are</h3>
+    <p>This website is operated by Jacks Labs, an independent engineering business based in Slovenia, central European Union. The data controller responsible for your personal data is Jaka Bevk.</p>
+    <p>Contact: <a href="mailto:jakabevk@gmail.com">jakabevk@gmail.com</a></p>
+
+    <hr class="divider">
+
+    <h3>2. Scope of This Policy</h3>
+    <p>This Privacy and Cookies Policy explains how Jacks Labs collects, uses, stores, and protects personal data when you visit <strong>jacks-labs.github.io</strong> (the "Website"). It applies to all visitors and is written in compliance with the EU General Data Protection Regulation (GDPR) — Regulation (EU) 2016/679 — and the ePrivacy Directive (Directive 2002/58/EC as amended by Directive 2009/136/EC).</p>
+
+    <hr class="divider">
+
+    <h3>3. Data We Collect</h3>
+    <p>This is a static informational website. We do not operate a registration system, user accounts, or a contact form that stores submissions on a server. However, the following limited data may be processed:</p>
+    <ul>
+      <li><strong>Usage data:</strong> GitHub Pages (the hosting provider) may automatically collect standard server-access logs including your IP address, browser type, referring URL, and the date/time of your visit. This is governed by GitHub's own privacy policy.</li>
+      <li><strong>Cookie data:</strong> We use a single functional cookie on your device to remember your cookie consent preference (see Section 5).</li>
+      <li><strong>Contact data:</strong> If you contact us via the email address displayed on this Website, we will receive and store your email address and any information you include in your message, solely for the purpose of responding to you.</li>
+    </ul>
+    <p>We do not collect sensitive personal data (as defined in Article 9 GDPR), and we do not engage in automated decision-making or profiling.</p>
+
+    <hr class="divider">
+
+    <h3>4. Legal Basis for Processing</h3>
+    <p>Under the GDPR, we rely on the following legal bases:</p>
+    <ul>
+      <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> For server-access logs collected by the hosting provider (GitHub Pages) necessary for the security and operation of the Website.</li>
+      <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> For placing the cookie consent preference cookie on your device. You may withdraw consent at any time by clearing your browser cookies.</li>
+      <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> For processing email correspondence, to respond to your enquiry and manage the business relationship.</li>
+    </ul>
+
+    <hr class="divider">
+
+    <h3>5. Cookies</h3>
+    <p>Cookies are small text files stored in your browser. This Website uses only one first-party cookie:</p>
+    <ul>
+      <li><strong>Name:</strong> cookiesAccepted</li>
+      <li><strong>Purpose:</strong> Stores your cookie consent choice (accepted or declined) so the banner is not shown on every visit.</li>
+      <li><strong>Type:</strong> Functional / strictly necessary for consent management.</li>
+      <li><strong>Duration:</strong> Persists until you clear your browser's local storage.</li>
+      <li><strong>Third-party access:</strong> None. This value is stored in your browser's localStorage and is never transmitted to any server.</li>
+    </ul>
+    <p>We do not use analytics cookies (e.g. Google Analytics), advertising cookies, tracking cookies, or any third-party cookies. Google Fonts are loaded from Google's CDN; this may cause your browser to make a request to Google's servers, which may process your IP address under Google's own privacy policy. No cookies are set by this request.</p>
+    <p>You can remove the consent cookie at any time by clearing your browser cookies or localStorage. You can also configure your browser to refuse all cookies; however, this may affect the functioning of some websites you visit.</p>
+
+    <hr class="divider">
+
+    <h3>6. How We Use Your Data</h3>
+    <p>Data collected through this Website is used exclusively for the following purposes:</p>
+    <ul>
+      <li>Ensuring the technical operation and security of the Website (hosting logs).</li>
+      <li>Remembering your cookie consent preference (localStorage).</li>
+      <li>Responding to direct email enquiries and potential business collaboration requests.</li>
+    </ul>
+    <p>We do not sell, rent, or share your personal data with third parties for marketing purposes. We do not transfer your personal data to countries outside the European Economic Area (EEA), except as may occur through GitHub Pages' hosting infrastructure, which is subject to appropriate safeguards under GDPR.</p>
+
+    <hr class="divider">
+
+    <h3>7. Data Retention</h3>
+    <p>We retain personal data only for as long as necessary for the purposes outlined above:</p>
+    <ul>
+      <li><strong>Server logs:</strong> Retained by GitHub Pages according to their own data retention policy.</li>
+      <li><strong>Cookie preference:</strong> Stored locally in your browser until you clear it.</li>
+      <li><strong>Email correspondence:</strong> Retained for as long as required to manage the enquiry or business relationship, and deleted when no longer needed, typically within 2 years of the last communication.</li>
+    </ul>
+
+    <hr class="divider">
+
+    <h3>8. Third-Party Services</h3>
+    <p>This Website relies on the following third-party services that may process data independently:</p>
+    <ul>
+      <li><strong>GitHub Pages (Microsoft Corporation):</strong> Our hosting provider. GitHub may collect access logs. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+      <li><strong>Google Fonts (Google LLC):</strong> Fonts are loaded from Google's CDN, which may process your IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</li>
+    </ul>
+    <p>We have no control over these third parties' data practices and encourage you to review their respective privacy policies.</p>
+
+    <hr class="divider">
+
+    <h3>9. Your Rights Under GDPR</h3>
+    <p>As a data subject in the European Union, you have the following rights under the GDPR:</p>
+    <ul>
+      <li><strong>Right of access (Art. 15):</strong> You may request a copy of the personal data we hold about you.</li>
+      <li><strong>Right to rectification (Art. 16):</strong> You may request correction of inaccurate or incomplete data.</li>
+      <li><strong>Right to erasure (Art. 17):</strong> You may request deletion of your personal data where there is no legitimate reason to continue processing it.</li>
+      <li><strong>Right to restriction of processing (Art. 18):</strong> You may request that we restrict the processing of your data in certain circumstances.</li>
+      <li><strong>Right to data portability (Art. 20):</strong> Where processing is based on consent or contract and carried out by automated means, you may request your data in a structured, machine-readable format.</li>
+      <li><strong>Right to object (Art. 21):</strong> You may object to processing based on legitimate interests at any time.</li>
+      <li><strong>Right to withdraw consent (Art. 7(3)):</strong> Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing.</li>
+    </ul>
+    <p>To exercise any of these rights, please contact us at <a href="mailto:jakabevk@gmail.com">jakabevk@gmail.com</a>. We will respond within 30 days. You also have the right to lodge a complaint with the Slovenian supervisory authority:</p>
+    <ul>
+      <li><strong>Information Commissioner of the Republic of Slovenia (Informacijski pooblaščenec)</strong><br>
+      Dunajska cesta 22, 1000 Ljubljana, Slovenia<br>
+      <a href="https://www.ip-rs.si" target="_blank" rel="noopener">www.ip-rs.si</a></li>
+    </ul>
+
+    <hr class="divider">
+
+    <h3>10. Data Security</h3>
+    <p>We take appropriate technical and organisational measures to protect personal data against unauthorised access, accidental loss, destruction, or damage. The Website is served over HTTPS (encrypted connection). Email correspondence is subject to the security measures of the respective email service providers.</p>
+
+    <hr class="divider">
+
+    <h3>11. Children's Privacy</h3>
+    <p>This Website is not directed at children under the age of 16. We do not knowingly collect personal data from children. If you believe a child has provided personal data through this Website, please contact us and we will take steps to delete it.</p>
+
+    <hr class="divider">
+
+    <h3>12. Changes to This Policy</h3>
+    <p>We may update this Privacy and Cookies Policy from time to time to reflect changes in law or our practices. The date at the top of this page indicates when the policy was last revised. We encourage you to review this page periodically. Continued use of the Website after changes are posted constitutes acceptance of the updated policy.</p>
+
+    <hr class="divider">
+
+    <h3>13. Contact</h3>
+    <p>For any questions, concerns, or requests regarding this Privacy and Cookies Policy or the processing of your personal data, please contact:</p>
+    <p>
+      <strong>Jaka Bevk — Jacks Labs</strong><br>
+      Slovenia, central EU<br>
+      <a href="mailto:jakabevk@gmail.com">jakabevk@gmail.com</a><br>
+      <a href="https://jacks-labs.github.io" target="_blank" rel="noopener">jacks-labs.github.io</a>
+    </p>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 JACKS LABS — EMBEDDED SYSTEMS
+  <a href="policy.html" class="logo-link">
+  <p><u>Privacy and Cookies Policy</u></p></a>
+</footer>
+
+<script>
+// Particle system and slideshow logic remain the same as previous version
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d', { alpha: true });
+
+let layers = [
+  { particles: [], count: 32, connectDist: 105, alpha: 0.11, parallax: 0.035, noiseStrength: 0.055, glow: 5 },
+  { particles: [], count: 24, connectDist: 130, alpha: 0.20, parallax: 0.11, noiseStrength: 0.085, glow: 8 },
+  { particles: [], count: 16, connectDist: 155, alpha: 0.30, parallax: 0.24, noiseStrength: 0.105, glow: 12 }
+];
+
+let mouse = { x: 0, y: 0 };
+let time = 0;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  createParticles();
+}
+
+function createParticles() {
+  layers.forEach(layer => {
+    layer.particles = [];
+    for (let i = 0; i < layer.count; i++) {
+      layer.particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.7 + 0.4,
+        noiseOffsetX: Math.random() * 1400,
+        noiseOffsetY: Math.random() * 1400,
+        hueOffset: Math.random() * 360
+      });
+    }
+  });
+}
+
+function noise(x, y) {
+  return Math.sin(x * 0.075) * Math.cos(y * 0.095) * 0.85 + Math.sin(x * 0.17 + y * 0.14) * 0.45;
+}
+
+function getParticleColor(hueOffset) {
+  const hue = 195 + Math.sin(time * 0.0014 + hueOffset) * 26;
+  return `hsl(${hue}, 88%, 73%)`;
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  time += 1;
+
+  layers.forEach(layer => {
+    const offsetX = (mouse.x - canvas.width / 2) * layer.parallax;
+    const offsetY = (mouse.y - canvas.height / 2) * layer.parallax;
+
+    for (let p of layer.particles) {
+      const nx = noise(p.x * 0.0028 + p.noiseOffsetX + time * 0.0065, p.y * 0.0028 + p.noiseOffsetY);
+      const ny = noise(p.y * 0.0028 + p.noiseOffsetY + time * 0.0075, p.x * 0.0028 + p.noiseOffsetX);
+
+      p.vx += nx * layer.noiseStrength;
+      p.vy += ny * layer.noiseStrength;
+      p.vx += (Math.random() - 0.5) * 0.07;
+      p.vy += (Math.random() - 0.5) * 0.07;
+
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const distSq = dx*dx + dy*dy;
+      if (distSq < 170*170 && distSq > 25) {
+        const dist = Math.sqrt(distSq);
+        const force = (170 - dist) / 170 * 3.2;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
+      }
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.915;
+      p.vy *= 0.915;
+
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    }
+
+    ctx.lineWidth = 0.7;
+    for (let i = 0; i < layer.particles.length; i++) {
+      const p1 = layer.particles[i];
+      for (let j = i + 1; j < layer.particles.length; j++) {
+        const p2 = layer.particles[j];
+        const d = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        if (d < layer.connectDist) {
+          ctx.globalAlpha = layer.alpha * (1 - d / layer.connectDist) * 0.8;
+          ctx.strokeStyle = '#2D9CDB';
+          ctx.beginPath();
+          ctx.moveTo(p1.x + offsetX, p1.y + offsetY);
+          ctx.lineTo(p2.x + offsetX, p2.y + offsetY);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (let p of layer.particles) {
+      const color = getParticleColor(p.hueOffset);
+      ctx.shadowColor = color;
+      ctx.shadowBlur = layer.glow;
+      ctx.fillStyle = color;
+      ctx.globalAlpha = layer.alpha * 1.55;
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 1.05, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.shadowBlur = 3;
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      ctx.arc(p.x + offsetX, p.y + offsetY, p.radius * 0.55, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animate);
+}
+
+// Init
+window.addEventListener('resize', resizeCanvas);
+window.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+function init() {
+  resizeCanvas();
+  animate();
+  
+}
+
+window.onload = init;
+</script>
+
+</body>
+</html>
